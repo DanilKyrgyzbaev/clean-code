@@ -3,6 +3,7 @@ package com.example.clean_code.presentation // ktlint-disable package-name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clean_code.data.repository.UserRepositoryImpl
+import com.example.clean_code.data.storage.SharedPreferencesUserStorage
 import com.example.clean_code.databinding.ActivityMainBinding
 import com.example.clean_code.domain.models.SaveUserNameParam
 import com.example.clean_code.domain.models.UserName
@@ -11,7 +12,7 @@ import com.example.clean_code.domain.usecase.SaveUserNameCase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val userRepository by lazy { UserRepositoryImpl(applicationContext) }
+    private val userRepository by lazy { UserRepositoryImpl(userStorage = SharedPreferencesUserStorage(context = applicationContext)) }
     private val getUserNameUseCase by lazy { GetUserNameUseCase(userRepository = userRepository) }
     private val saveUserNameCase by lazy { SaveUserNameCase(userRepository = userRepository) }
     override fun onCreate(savedInstanceState: Bundle?) {
