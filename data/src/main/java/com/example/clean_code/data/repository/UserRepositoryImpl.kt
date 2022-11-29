@@ -1,7 +1,7 @@
-package com.example.clean_code.data.repository
+package com.example.clean_code.data.repository // ktlint-disable package-name
 
-import com.example.clean_code.data.storage.model.User
 import com.example.clean_code.data.storage.UserStorage
+import com.example.clean_code.data.storage.model.User
 import com.example.clean_code.domain.models.SaveUserNameParam
 import com.example.clean_code.domain.models.UserName
 import com.example.clean_code.domain.repository.UserRepository
@@ -14,7 +14,6 @@ class UserRepositoryImpl(private val userStorage: UserStorage) : UserRepository 
 
     override fun getUserName(): UserName {
         val user = userStorage.getUser()
-        val userName = UserName(firstName = user.firstName, lastName = user.lastName)
-        return userName
+        return UserName(firstName = user.firstName, lastName = user.lastName)
     }
 }
